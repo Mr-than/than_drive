@@ -58,7 +58,7 @@
 
 # 备注
 
-这个仓库是守护程序
+这个仓库是守护程序，分为三个仓库主要是为了你方便定制，你需要定制哪一部分，直接定制相应部分即可
 
 ui：[Mr-than/than_drive_desktop](https://github.com/Mr-than/than_drive_desktop)
 
