@@ -11,12 +11,12 @@ import java.util.List;
 public class SystemResourceMonitor {
 
     /**
-     * 下面几个变量分别为：预设的用户网络贷款    cpu的高占用阈值    内存高占用阈值   网络高占用阈值
+     * 下面几个变量分别为：预设的用户网络带宽    cpu的高占用阈值    内存高占用阈值   网络高占用阈值
      * 磁盘高占用阈值
      */
     private static final long DEFAULT_NET_SPEED = 100L * 1_000_000L;
     private static final double CPU_THRESHOLD = 80.0;
-    private static final double MEM_THRESHOLD = 80.0;
+    private static final double MEM_THRESHOLD = 90.0;
     private static final double NET_THRESHOLD = 50.0;
     private static final double DISK_THRESHOLD = 50.0;
 
@@ -30,6 +30,8 @@ public class SystemResourceMonitor {
     private long[] prevNetRecv;
     private long[] prevNetSent;
     private long[] prevDiskTransferTime;
+
+    private static final Logger logger = Logger.getLogger(SystemResourceMonitor.class);
 
     public SystemResourceMonitor() {
         si = new SystemInfo();
@@ -129,14 +131,17 @@ public class SystemResourceMonitor {
      */
     public void waitForLowUsage() throws InterruptedException {
         int consecutiveLowCount = 0;
+        if (isAnyHighUsage()) {
+            logger.warn("系统资源高占用，等待中...");
+        }
+
         while (true) {
             if (isAnyHighUsage()) {
                 consecutiveLowCount = 0; // 重置
-                System.out.println("系统资源高占用，等待中...");
             } else {
                 consecutiveLowCount++;
                 if (consecutiveLowCount >= 3) {
-                    System.out.println("系统资源连续三次低占用，可以继续执行。");
+                    logger.warn("系统资源连续三次低占用，继续执行。");
                     return;
                 }
             }

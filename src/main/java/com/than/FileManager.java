@@ -106,7 +106,7 @@ public class FileManager {
      *
      * @return 是否目录需要更新，返回true表示需要，否则不需要
      */
-    public ArrayDeque<File> scanFiles() throws IOException, NoSuchAlgorithmException {
+    public ArrayDeque<File> scanFiles() throws IOException, NoSuchAlgorithmException, InterruptedException {
         ArrayDeque<File> files;
         ArrayList<File> rootFolderList=new ArrayList<>();
         for (String rootFolder : config.getRootFolders()) {
@@ -126,11 +126,12 @@ public class FileManager {
      * @param folder 目录
      * @return 需要更新的文件
      */
-    private ArrayDeque<File> recursionScanFiles(File folder) throws IOException, NoSuchAlgorithmException {
+    private ArrayDeque<File> recursionScanFiles(File folder) throws IOException, NoSuchAlgorithmException, InterruptedException {
         File[] files = folder.listFiles();
         ArrayDeque<File> fileList = new ArrayDeque<>();
         for (File file : files) {
             if (file.isDirectory()) {
+                monitor.waitForLowUsage();
                 fileList.addAll(recursionScanFiles(file));
             } else {
                 curFileSet.add(file.getAbsolutePath());
@@ -175,6 +176,7 @@ public class FileManager {
         logger.info("files : " + files.stream().map((Function<File, Object>) File::getAbsolutePath).toList());
         while (!files.isEmpty()) {
             String path = files.pop().getAbsolutePath();
+            monitor.waitForLowUsage();
             networkUtil.upload(path, map.get(path));
         }
         logger.info("start update time");
