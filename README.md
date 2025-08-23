@@ -55,3 +55,11 @@
 # 安全问题
 
 这是一个开源项目，所有代码透明开放。
+
+# 备注
+
+这个仓库是守护程序
+
+ui：[Mr-than/than_drive_desktop](https://github.com/Mr-than/than_drive_desktop)
+
+后端：[Mr-than/than_driver_back](https://github.com/Mr-than/than_driver_back)
