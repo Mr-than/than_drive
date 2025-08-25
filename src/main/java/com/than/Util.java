@@ -3,8 +3,12 @@ package com.than;
 import java.awt.*;
 
 public class Util {
-    //private static final Logger logger = Logger.getLogger(Main.class);
 
+    /**
+     * 展示Windows通知，发送问题或下载结果
+     * @param title 消息标题
+     * @param message 消息内容
+     */
     public static void showWindowsNotification(String title, String message){
         if (SystemTray.isSupported()) {
             try {
@@ -26,5 +30,4 @@ public class Util {
             System.out.println("SystemTray 不支持！");
         }
     }
-
 }

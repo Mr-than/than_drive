@@ -5,9 +5,14 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
+
+/**
+ * 这个类用来放置程序的一些最基础的函数或变量
+ */
+
 public class Base {
     private static final Logger logger = Logger.getLogger(Base.class);
-
     /**
      * 自动注册开机启动任务
      */

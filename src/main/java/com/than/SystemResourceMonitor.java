@@ -8,6 +8,10 @@ import oshi.hardware.NetworkIF;
 
 import java.util.List;
 
+
+/**
+ * 这个类是涵盖了监控电脑资源使用情况的一些函数
+ */
 public class SystemResourceMonitor {
 
     /**
@@ -20,12 +24,12 @@ public class SystemResourceMonitor {
     private static final double NET_THRESHOLD = 50.0;
     private static final double DISK_THRESHOLD = 50.0;
 
+
     private final SystemInfo si;
     private final CentralProcessor processor;
     private final GlobalMemory memory;
     private final List<NetworkIF> networks;
     private final List<HWDiskStore> disks;
-
     private long[] prevCpuTicks;
     private long[] prevNetRecv;
     private long[] prevNetSent;

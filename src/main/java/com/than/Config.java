@@ -4,15 +4,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 配置文件实体
+ */
 public class Config {
+    //用户选择的文件夹
     private List<String> rootFolders;
+    //上一次扫描时间，这里面所有的时间，都用时间戳来记录
     private long lastUpdateTime;
+    //扫描间隔
     private long scanIntervalTime;
+    //是否开机启动 这条配置暂时并没有用上
     private boolean bootUp;
+    //单个文件在服务器存储的上限
     private int singleFileCount;
-
+    //文件下载地址
     private String downLoadPath;
-
+    //与服务器通信的密码
     private String verify;
 
     public String getVerify() {

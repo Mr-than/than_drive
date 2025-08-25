@@ -7,6 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * 日志类，其他日志框架都过于重量级，需要单独的配置
+ */
 public class Logger {
     public enum Level {
         DEBUG, INFO, WARN, ERROR

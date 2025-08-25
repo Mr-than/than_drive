@@ -10,7 +10,10 @@ public class Main {
     public static void main(String[] args) {
 
         try {
-            Base.autoBoot();
+            boolean debug = true;
+            if (!debug) {
+                Base.autoBoot();
+            }
             Logger.setLevel(Logger.Level.INFO);
             Logger.setLogFilePath("log.txt");
             logger.info("start......");

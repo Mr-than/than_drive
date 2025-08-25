@@ -4,7 +4,15 @@ import java.io.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * 这个类是获取或转换一些文件的信息
+ */
 public class FileData {
+    /**
+     * 获取文件的md5值，为了比对文件是否发生了变化
+     * @param file 文件对象
+     * @return md5值，字符串形式返回
+     */
     public static String getMd5(File file) throws IOException, NoSuchAlgorithmException {
         if (!file.exists()) {
             throw new FileNotFoundException("文件不存在: " + file.getAbsolutePath());

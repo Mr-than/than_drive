@@ -1,5 +1,8 @@
 package com.than;
 
+/**
+ * socket消息的包装类
+ */
 public class SocketMassage {
 
     private String dataName;
